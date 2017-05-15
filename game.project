@@ -1,5 +1,5 @@
 [project]
-title = My project
+title = Html5Extension
 version = 0.1
 
 [bootstrap]
@@ -17,4 +17,7 @@ scale = 0.02
 
 [script]
 shared_state = 1
+
+[html5]
+htmlfile = /html5template.html
 

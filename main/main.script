@@ -1,0 +1,46 @@
+
+local function test_cpp()
+    local a = 10
+    local b = 4.2
+    local result = html5nativeext.multiply(a, b)
+    local s = "" .. a .. " * " .. b .. " == " .. result
+    return s
+end
+
+local function test_asm()
+    local a = 11
+    local b = 22
+    local result = html5nativeext.max(a, b)
+    local s = "Math.max(" .. a .. ", " .. b .. ") == " .. result
+    return s
+end
+
+function init(self)
+    label.set_text("#label_cpp", test_cpp())
+    label.set_text("#label_asm", test_asm())
+end
+
+function final(self)
+    -- Add finalization code here
+    -- Remove this function if not needed
+end
+
+function update(self, dt)
+    -- Add update code here
+    -- Remove this function if not needed
+end
+
+function on_message(self, message_id, message, sender)
+    -- Add message-handling code here
+    -- Remove this function if not needed
+end
+
+function on_input(self, action_id, action)
+    -- Add input-handling code here
+    -- Remove this function if not needed
+end
+
+function on_reload(self)
+    -- Add reload-handling code here
+    -- Remove this function if not needed
+end
