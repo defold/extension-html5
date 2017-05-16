@@ -11,7 +11,14 @@
 
 #include <emscripten.h>
 
-/////////
+// The C+ library from testlib.cpp/testlib.a
+#include <testlib.h>
+
+// The Emscripten JS library from library_test.js
+extern "C" const char* testGetUserData();
+extern "C" void testClearUserData();
+
+///////////
 
 static int Multiply(lua_State* L)
 {
@@ -20,6 +27,18 @@ static int Multiply(lua_State* L)
     lua_Number b = luaL_checknumber(L, 2);
     
     lua_Number result = a * b;
+
+    lua_pushnumber(L, result);
+    return 1;
+}
+
+// Calling into a c++ library
+static int Fibonacci(lua_State* L)
+{
+    DM_LUA_STACK_CHECK(L, 1);
+    int n = luaL_checkint(L, 1);
+    
+    int result = testlib::Fibonacci(n);
 
     lua_pushnumber(L, result);
     return 1;
@@ -41,13 +60,27 @@ static int Max(lua_State* L)
     return 1;
 }
 
+static int GetUserData(lua_State* L)
+{
+    DM_LUA_STACK_CHECK(L, 1);
+
+    const char* result = testGetUserData();
+    if (result == 0 || strcmp(result, "") == 0) {
+        lua_pushnil(L);
+    } else {
+        lua_pushstring(L, result);
+        testClearUserData();
+    }
+    return 1;
+}
+
 // Functions exposed to Lua
 static const luaL_reg Module_methods[] =
 {
     {"multiply", Multiply},
+    {"fibonacci", Fibonacci},
     {"max", Max},
-    //{"dostuff_js", DoStuffJS},
-    //{"getdata", GetData},
+    {"get_user_data", GetUserData},
     {0, 0}
 };
 

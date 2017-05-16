@@ -7,6 +7,13 @@ local function test_cpp()
     return s
 end
 
+local function test_lib()
+    local n = 6
+    local result = html5nativeext.fibonacci(n)
+    local s = "Fibonacci( " .. n .. " ) == " .. result
+    return s
+end
+
 local function test_asm()
     local a = 11
     local b = 22
@@ -15,32 +22,26 @@ local function test_asm()
     return s
 end
 
+
+local function run_from_js()
+    local result = html5nativeext.get_user_data()
+    if result then
+        print("RUN CODE:" .. result)
+	    local fn = loadstring(result)
+	    fn();
+	else
+	end
+end
+
 function init(self)
     label.set_text("#label_cpp", test_cpp())
+    label.set_text("#label_lib", test_lib())
     label.set_text("#label_asm", test_asm())
+    label.set_text("#label_js", "Press the RUN Button!")
 end
 
-function final(self)
-    -- Add finalization code here
-    -- Remove this function if not needed
-end
 
 function update(self, dt)
-    -- Add update code here
-    -- Remove this function if not needed
-end
-
-function on_message(self, message_id, message, sender)
-    -- Add message-handling code here
-    -- Remove this function if not needed
-end
-
-function on_input(self, action_id, action)
-    -- Add input-handling code here
-    -- Remove this function if not needed
-end
-
-function on_reload(self)
-    -- Add reload-handling code here
-    -- Remove this function if not needed
+    run_from_js()
+    
 end

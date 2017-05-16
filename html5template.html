@@ -55,9 +55,26 @@
     <div id="app-container" class="canvas-app-container" align="center">
         <canvas id="canvas" class="canvas-app-canvas" tabindex="1" width="{{DEFOLD_DISPLAY_WIDTH}}" height="{{DEFOLD_DISPLAY_HEIGHT}}"></canvas>
         <br/>
-        <button id="fullscreen" class="button">Fullscreen</button>
     </div>
 
+    <div id="codeform" align="center">
+        <p/>
+        <p/>
+        <p/>
+        <textarea id="code" cols="120" rows="20">
+go.animate("logo#sprite", "scale", go.PLAYBACK_LOOP_PINGPONG, 1.6, go.EASING_INELASTIC, 1);
+label.set_text("#label_js", "HELLO FROM HTML5");
+        </textarea>
+        <br/>
+        <button id="run" class="button">Run Code</button>
+    </div>
+
+    <script>
+      function SetTestData(txt) {
+          console.log(txt);
+          MYTESTLIBRARY.SetTestData(txt);
+        };
+    </script>
     <!-- -->
       {{{DEFOLD_DEV_INLINE}}}
       <script type='text/javascript' src="dmloader.js"></script>
@@ -78,10 +95,10 @@
 
         Module.runApp("canvas", extra_params);
 
-        /* Fullscreen button */
-        document.getElementById("fullscreen").onclick = function (e) {
-          Module.toggleFullscreen();
+        document.getElementById("run").onclick = function (e) {
+          SetTestData(document.getElementById('code').value)
         };
     </script>
+
 </body>
 </html>
