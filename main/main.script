@@ -1,4 +1,5 @@
 
+-- Tests a regular C++ extension function from extension.cpp
 local function test_cpp()
     local a = 10
     local b = 4.2
@@ -7,6 +8,7 @@ local function test_cpp()
     return s
 end
 
+-- Tests a regular C++ library function
 local function test_lib()
     local n = 6
     local result = html5nativeext.fibonacci(n)
@@ -14,6 +16,7 @@ local function test_lib()
     return s
 end
 
+-- Tests a call to java script via the C++ macro EM_ASM_ 
 local function test_asm()
     local a = 11
     local b = 22
@@ -22,7 +25,8 @@ local function test_asm()
     return s
 end
 
-
+-- Polls the user data, if it's been set from the html page
+-- If it has, it runs the code
 local function run_from_js()
     local result = html5nativeext.get_user_data()
     if result then
@@ -43,5 +47,4 @@ end
 
 function update(self, dt)
     run_from_js()
-    
 end
