@@ -1,4 +1,4 @@
-// Extension lib defines 
+// Extension lib defines
 #define EXTENSION_NAME html5nativeext
 #define LIB_NAME "html5nativeext"
 #define MODULE_NAME LIB_NAME
@@ -11,7 +11,7 @@
 
 #include <emscripten.h>
 
-// The C+ library from testlib.cpp/testlib.a
+// The C++ library from testlib.cpp/testlib.a
 #include <testlib.h>
 
 // The Emscripten JS library from library_test.js
@@ -25,7 +25,7 @@ static int Multiply(lua_State* L)
     DM_LUA_STACK_CHECK(L, 1);
     lua_Number a = luaL_checknumber(L, 1);
     lua_Number b = luaL_checknumber(L, 2);
-    
+
     lua_Number result = a * b;
 
     lua_pushnumber(L, result);
@@ -37,7 +37,7 @@ static int Fibonacci(lua_State* L)
 {
     DM_LUA_STACK_CHECK(L, 1);
     int n = luaL_checkint(L, 1);
-    
+
     int result = testlib::Fibonacci(n);
 
     lua_pushnumber(L, result);

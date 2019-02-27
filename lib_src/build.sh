@@ -1,8 +1,10 @@
+#!/usr/bin/env bash
+
 # Run from this folder
 # Builds a C++ library and moves it to the extension library folder
 
-EMCC=/Users/mathiaswesterdahl/work/defold/tmp/dynamo_home/ext/bin/emsdk_portable/emscripten/1.35.0/em++
-EMAR=/Users/mathiaswesterdahl/work/defold/tmp/dynamo_home/ext/bin/emsdk_portable/emscripten/1.35.0/emar
+EMCC=/Users/mathiaswesterdahl/work/defold/tmp/dynamo_home/ext/bin/emsdk_portable/emscripten/1.38.12/em++
+EMAR=/Users/mathiaswesterdahl/work/defold/tmp/dynamo_home/ext/bin/emsdk_portable/emscripten/1.38.12/emar
 
 $EMCC -O3 testlib.cpp -c -o testlib.o
 
