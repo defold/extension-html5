@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <div id="codeform" align="center">
+        <p/>
+        <p/>
+        <p/>
+        <textarea id="code" cols="120" rows="20">
+go.animate("logo#sprite", "scale", go.PLAYBACK_LOOP_PINGPONG, 1.6, go.EASING_INELASTIC, 1);
+label.set_text("#label_js", "HELLO FROM HTML5");
+        </textarea>
+        <br/>
+        <button id="run" class="button">Run Code</button>
+    </div>
+
+    <script type='text/javascript'>
+      function SetTestData(txt) {
+          console.log(txt);
+          MYTESTLIBRARY.SetTestData(txt);
+        };
+        document.getElementById("run").onclick = function (e) {
+          SetTestData(document.getElementById('code').value)
+        };
+    </script>
+</body>
+</html>

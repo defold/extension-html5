@@ -16,7 +16,7 @@ var LibraryMyTest = {
                     return '';
                 }
             },
-            
+
             SetTestData : function(data) {
                 if (typeof window !== 'undefined') {
                     MYTESTLIBRARY._data = data;
@@ -30,7 +30,7 @@ var LibraryMyTest = {
                 var str = MYTESTLIBRARY.GetTestData();                 // get the data from java script
                 if (str != '') {
                     MYTESTLIBRARY._cstr = _malloc(str.length + 1);         // allocate C++ memory to store it in
-                    Module.writeStringToMemory(str, MYTESTLIBRARY._cstr);  // copy the data into the C array
+                    Module.writeStringToMemory(str, MYTESTLIBRARY._cstr, false);  // copy the data into the C array
                 }
             }
             return MYTESTLIBRARY._cstr;
