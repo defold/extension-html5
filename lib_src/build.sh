@@ -6,11 +6,15 @@
 EMCC=$EMSCRIPTEN/em++
 EMAR=$EMSCRIPTEN/emar
 
-$EMCC -O3 testlib.cpp -c -o testlib.o
+function run {
+	echo $*
+	$*
+}
 
-$EMAR rcs libtestlib.a testlib.o
+run $EMCC -O3 -fPIC -fno-exceptions -fno-rtti testlib.cpp -c -o testlib.o
+run $EMAR rcs libtestlib.a testlib.o
 
-mkdir -p ../html5nativeext/lib/js-web
+mkdir -p ../html5nativeext/lib/web
 mkdir -p ../html5nativeext/include
 
 cp -v libtestlib.a ../html5nativeext/lib/web
