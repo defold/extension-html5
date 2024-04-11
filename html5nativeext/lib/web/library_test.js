@@ -29,18 +29,18 @@ var LibraryMyTest = {
             if (null == MYTESTLIBRARY._cstr) {
                 var str = MYTESTLIBRARY.GetTestData();                 // get the data from java script
                 if (str != '') {
-                    MYTESTLIBRARY._cstr = _malloc(str.length + 1);         // allocate C++ memory to store it in
-                    Module.writeStringToMemory(str, MYTESTLIBRARY._cstr, false);  // copy the data into the C array
+                    MYTESTLIBRARY._cstr = stringToNewUTF8(str);         // allocate C++ memory to store it in
                 }
             }
             return MYTESTLIBRARY._cstr;
         },
 
         testClearUserData: function() {
-            MYTESTLIBRARY._data = ''
-            MYTESTLIBRARY._cstr = null
+            MYTESTLIBRARY._data = '';
+            _free(MYTESTLIBRARY._cstr);
+            MYTESTLIBRARY._cstr = null;
         }
 }
 
 autoAddDeps(LibraryMyTest, '$MYTESTLIBRARY');
-mergeInto(LibraryManager.library, LibraryMyTest);
+addToLibrary(LibraryMyTest);
